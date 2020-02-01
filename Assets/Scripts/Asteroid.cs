@@ -23,6 +23,7 @@ public class Asteroid : MonoBehaviour
     set
     {
       m_mass = value;
+      
     }
   }
 
@@ -37,5 +38,12 @@ public class Asteroid : MonoBehaviour
   void Update()
   {
 
+  }
+
+  private void
+   updateSize()
+  {
+    transform.localScale *= Mass;
+    m_orbit = Mass * 0.5f;
   }
 }
