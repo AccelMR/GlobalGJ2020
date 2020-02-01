@@ -106,3 +106,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f7b6635db2c5e27488c85f8312051db8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  m_orbit: 0
+  m_mass: 0
+  sizeOfOrbit: 0.58

@@ -29,9 +29,12 @@ public class Asteroid : MonoBehaviour
     }
   }
 
+  public float sizeOfOrbit = 0.5f;
+
   // Start is called before the first frame update
   void Start()
   {
+    m_orbit = Mass * sizeOfOrbit;
   }
 
   // Update is called once per frame
@@ -43,8 +46,8 @@ public class Asteroid : MonoBehaviour
   private void
    updateSize()
   {
-    transform.localScale *= Mass;
-    m_orbit = Mass * 0.7f;
+    transform.localScale = new Vector3(1, 1, 1) * Mass;
+    m_orbit = Mass * sizeOfOrbit;
   }
 
   private void OnDrawGizmos()
