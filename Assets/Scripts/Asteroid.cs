@@ -49,6 +49,8 @@ public class Asteroid : MonoBehaviour
   // Update is called once per frame
   void Update()
   {
+    var playerDir = GameManager.GameMngr.Player.transform.position - transform.position;
+    m_atractionForce = playerDir.normalized * (Mass * 1.0f);
   }
 
   private void
