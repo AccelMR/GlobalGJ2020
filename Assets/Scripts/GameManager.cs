@@ -39,6 +39,19 @@ public class GameManager : MonoBehaviour
   }
 
 
+  private static GameManager gameMngr = null;
+
+  // Game Instance Singleton
+  public static GameManager GameMngr
+  {
+    get
+    {
+      return gameMngr;
+    }
+  }
+
+
+
   // Start is called before the first frame update
   void Start()
   {
