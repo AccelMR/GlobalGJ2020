@@ -3,9 +3,9 @@ using UnityEngine.SceneManagement;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ReturnMenu : MonoBehaviour
+public class Restart : MonoBehaviour
 {
-   public void MenuReturn(string level)
+    public void RestarGame(string level)
     {
         SceneManager.LoadScene(level);
     }
