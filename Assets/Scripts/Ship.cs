@@ -22,6 +22,9 @@ public class Ship : MonoBehaviour
   [SerializeField]
   float m_velocity;
 
+  [SerializeField]
+  float m_repulsionForce;
+
   //The limit of the mass of the target that can be attracted 
   [SerializeField]
   float m_attractionMassLimit;
@@ -39,13 +42,6 @@ public class Ship : MonoBehaviour
     {
       return 0.86f;
     }
-  }
-
-
-  // Start is called before the first frame update
-  void Awake()
-  {
-    m_viewDirection = Vector2.zero;
   }
 
   // Update is called once per frame
@@ -71,7 +67,7 @@ public class Ship : MonoBehaviour
   OnDrawGizmos()
   {
     Gizmos.color = Color.red;
-    Gizmos.DrawLine(transform.position, m_viewDirection);
+    Gizmos.DrawLine(transform.position, transform.position + m_viewDirection);
   }
 #endif
 
@@ -79,17 +75,25 @@ public class Ship : MonoBehaviour
   rotateShip()
   {
     Vector3 newViewDirection =
-      new Vector3(Input.GetAxis("leftStickX"), 0, Input.GetAxis("leftStickY"));
+      new Vector3(Input.GetAxis("leftStickX"), 0, Input.GetAxis("leftStickY") * -1);
     m_viewDirection += newViewDirection * Time.fixedDeltaTime * m_rotationSpeed;
     m_viewDirection.Normalize();
+    transform.forward = m_viewDirection;
   }
 
   void
   attraction(Asteroid _target)
   {
+    Vector3 force;
     if (_target.Mass < m_attractionMassLimit)
     {
-    
+       force = seek(_target.transform);
+      //_target.addForce(force);
+    }
+    else
+    {
+      force = seek(transform);
+      transform.position += force * Time.fixedDeltaTime;
     }
   }
 
@@ -98,7 +102,12 @@ public class Ship : MonoBehaviour
   {
     if(_target.Mass < m_repulsionLimit)
     {
-
+      Vector3 force = m_viewDirection * m_repulsionForce;
+      //_target.addForce(force);
+    }
+    else
+    {
+      
     }
   }
 
@@ -106,6 +115,15 @@ public class Ship : MonoBehaviour
   addForces(List<Vector3> _forces)
   {
 
+  }
+
+  Vector3
+  seek(Transform _target)
+  {
+    Vector3 forceV = transform.position - _target.position;
+    forceV.Normalize();
+    forceV *= m_velocity;
+    return forceV;
   }
 
 }
