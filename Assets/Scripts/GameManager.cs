@@ -142,7 +142,7 @@ public class GameManager : MonoBehaviour
     {
       var spawner = new GameObject("Spawner");
       spawner.tag = "Spawner";
-      AsteroidGenerator.generar_bolas();
+      AsteroidGenerator.generarAsteroides();
     }
 
     m_gameTime += Time.fixedDeltaTime;
