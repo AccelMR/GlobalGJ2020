@@ -19,8 +19,19 @@ public class Ship : MonoBehaviour
   [SerializeField]
   float m_rotationSpeed;
 
+  [SerializeField]
+  float m_velocity;
+
+  //The limit of the mass of the target that can be attracted 
+  [SerializeField]
+  float m_attractionMassLimit;
+
+  //The limit of the mass of the target that can be repulsed
+  [SerializeField]
+  float m_repulsionLimit;
+
   private Vector2 m_viewDirection;
-  private List<Vector2> m_forces;
+  private List<Vector3> m_forces;
 
 
   // Start is called before the first frame update
@@ -66,13 +77,27 @@ public class Ship : MonoBehaviour
   }
 
   void
-  attraction()    
+  attraction(Asteroid _target)
   {
+    if (_target.Mass < m_attractionMassLimit)
+    {
+    
+    }
   }
 
   void
-  repulsion()
+  repulsion(Asteroid _target)
   {
+    if(_target.Mass < m_repulsionLimit)
+    {
+
+    }
+  }
+
+  public void
+  addForces(List<Vector3> _forces)
+  {
+
   }
 
 }
