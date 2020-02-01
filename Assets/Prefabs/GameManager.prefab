@@ -78,7 +78,7 @@ MonoBehaviour:
   m_objeto: {fileID: 6796200093536388451, guid: b6a3965002bcb8b46b2cbb0c816c730f,
     type: 3}
   m_numObjetos: 30
-  m_rangoPosicion: {x: 40, y: 0, z: 40}
+  m_rangoPosicion: {x: 20, y: 0, z: 20}
   m_coeficienteDispersion: 12
   m_iteracionesDispersion: 10
 --- !u!1 &3548072430499541486

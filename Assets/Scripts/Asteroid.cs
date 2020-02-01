@@ -41,6 +41,11 @@ public class Asteroid : MonoBehaviour
   }
 
 
+  private Vector3 m_foroceApplied;
+  private bool wasForceApplied = false;
+  private float m_velocity;
+
+
   // Start is called before the first frame update
   void Start()
   {
@@ -51,6 +56,12 @@ public class Asteroid : MonoBehaviour
   {
     var playerDir = GameManager.GameMngr.Player.transform.position - transform.position;
     m_atractionForce = playerDir.normalized * (Mass * 1.0f);
+
+    if (wasForceApplied)
+    {
+      transform.position = m_foroceApplied * Time.fixedDeltaTime * m_velocity;
+    }
+
   }
 
   private void
@@ -62,6 +73,13 @@ public class Asteroid : MonoBehaviour
     m_atractionForce = playerDir.normalized * (Mass * 1.0f);
    
   }
+
+  void
+  addForce(Vector3 foce)
+  {
+    m_foroceApplied += foce;
+  }
+
 
 #if UNITY_EDITOR
   private void OnDrawGizmos()
