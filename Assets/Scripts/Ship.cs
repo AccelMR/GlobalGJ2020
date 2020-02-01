@@ -33,6 +33,14 @@ public class Ship : MonoBehaviour
   private Vector2 m_viewDirection;
   private List<Vector3> m_forces;
 
+  public float Radius
+  {
+    get
+    {
+      return 0.86f;
+    }
+  }
+
 
   // Start is called before the first frame update
   void Awake()
@@ -70,10 +78,10 @@ public class Ship : MonoBehaviour
   void
   rotateShip()
   {
-    Vector2 newViewDirection =
-      new Vector2(Input.GetAxis("leftStickX"), -Input.GetAxis("leftStickY"));
-    m_viewDirection += newViewDirection * Time.fixedDeltaTime * m_rotationSpeed;
-    m_viewDirection.Normalize();
+   // Vector2 newViewDirection =
+   //   new Vector2(Input.GetAxis("leftStickX"), -Input.GetAxis("leftStickY"));
+   // m_viewDirection += newViewDirection * Time.fixedDeltaTime * m_rotationSpeed;
+   // m_viewDirection.Normalize();
   }
 
   void

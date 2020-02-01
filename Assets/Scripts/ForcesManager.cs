@@ -24,7 +24,8 @@ public class ForcesManager : MonoBehaviour
     foreach (var asteroid in asteroidList)
     {
       var Distance = (player.transform.position - asteroid.transform.position).magnitude;
-      if (Distance < m_range)
+      var minDistance = asteroid.Orbit;
+      if (Distance - player.Radius < minDistance)
       {
         forcesAppliable.Add(asteroid.AtractionForce);
 
@@ -32,36 +33,30 @@ public class ForcesManager : MonoBehaviour
       }
     }
 
-
-
-    if (i > 0)
+    if(i > 0)
     {
-      Debug.Log("Possibility to collide with: " + i);
+      Debug.Log(i);
     }
+
   }
 
 
 #if UNITY_EDITOR
   private void OnDrawGizmos()
   {
+    if(null == GameManager.GameMngr)
+    {
+      return;
+    }
+
     var player = GameManager.GameMngr.Player;
-
-    Gizmos.color = Color.black;
-    Gizmos.DrawWireSphere(player.transform.position, m_range);
-
 
     var asteroidList = GameManager.GameMngr.AsteroidGenerator.ListaEstrella;
     foreach (var asteroid in asteroidList)
     {
       var sqrDistance = (player.transform.position - asteroid.transform.position).magnitude;
 
-      if (sqrDistance < m_range)
-      {
-        Gizmos.color = Color.green;
-        Gizmos.DrawLine(asteroid.transform.position, player.transform.position);
-      }
-
-      if (sqrDistance - 0.5f < asteroid.Orbit)
+      if (sqrDistance - player.Radius < asteroid.Orbit)
       {
         Gizmos.color = Color.cyan;
         Gizmos.DrawLine(asteroid.transform.position, player.transform.position);
