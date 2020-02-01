@@ -18,23 +18,28 @@ public class ForcesManager : MonoBehaviour
     var asteroidList = GameManager.GameMngr.AsteroidGenerator.ListaEstrella;
     var player = GameManager.GameMngr.Player;
 
+    List<Vector3> forcesAppliable = new List<Vector3>();
+
     int i = 0;
     foreach (var asteroid in asteroidList)
     {
       var Distance = (player.transform.position - asteroid.transform.position).magnitude;
       if (Distance < m_range)
       {
-
+        forcesAppliable.Add(asteroid.AtractionForce);
 
         i++;
       }
     }
+
+
 
     if (i > 0)
     {
       Debug.Log("Possibility to collide with: " + i);
     }
   }
+
 
 #if UNITY_EDITOR
   private void OnDrawGizmos()
