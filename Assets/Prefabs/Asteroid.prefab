@@ -108,4 +108,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_orbit: 0
   m_mass: 0
-  sizeOfOrbit: 0.4
+  sizeOfOrbit: 0.58
