@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-enum GAME_STATE
+public enum GAME_STATE
 {
   mainScreen = 0,
   gamePlay,
@@ -23,7 +23,13 @@ public class GameManager : MonoBehaviour
   [SerializeField]
   private float m_gameOverTime = 0;
 
+  private GAME_STATE m_prevState = GAME_STATE.undefined;
+
   private GAME_STATE m_gameState = GAME_STATE.gamePlay;
+  public GAME_STATE GameState
+  {
+    get { return m_gameState; }
+  }
 
   private Ship m_player;
   public Ship Player
@@ -38,6 +44,18 @@ public class GameManager : MonoBehaviour
     }
   }
 
+  private Gen m_asteroidGenerator;
+  public Gen AsteroidGenerator
+  {
+    get
+    {
+      if(null == m_asteroidGenerator)
+      {
+        m_asteroidGenerator = GetComponentInChildren<Gen>();
+      }
+      return m_asteroidGenerator;
+    }
+  }
 
   private static GameManager gameMngr = null;
 
@@ -75,29 +93,12 @@ public class GameManager : MonoBehaviour
     {
       case GAME_STATE.gamePlay:
         {
-          m_gameTime += Time.fixedDeltaTime;
-          m_mainScrnTime = 0;
-          m_pauseTime = 0;
-
-          if (Input.GetButtonDown("Submit"))
-          {
-            m_gameState = GAME_STATE.pause;
-            //TODO: call scene
-          }
-
+          gamePlayState();
         }
         break;
       case GAME_STATE.pause:
         {
-          m_gameTime = 0;
-          m_mainScrnTime = 0;
-          m_pauseTime += Time.fixedDeltaTime;
-
-          if (Input.GetButtonDown("Submit"))
-          {
-            m_gameState = GAME_STATE.gamePlay;
-            //TODO call scene
-          }
+          pauseState();
         }
         break;
       case GAME_STATE.undefined:
@@ -120,11 +121,53 @@ public class GameManager : MonoBehaviour
           m_gameTime = 0;
           m_mainScrnTime = 0;
           m_pauseTime = 0;
-          m_gameOverTime += Time.fixedDeltaTime; 
+          m_gameOverTime += Time.fixedDeltaTime;
         }
         break;
       default:
         break;
+    }
+
+    if (Input.GetButtonDown("Fire1"))
+    {
+      SceneManager.LoadScene("UI_GameOver");
+    }
+
+  }
+
+  private void
+    gamePlayState()
+  {
+    if (m_gameTime <= 0 || m_prevState == GAME_STATE.mainScreen)
+    {
+      var spawner = new GameObject("Spawner");
+      spawner.tag = "Spawner";
+      AsteroidGenerator.generarAsteroides();
+    }
+
+    m_gameTime += Time.fixedDeltaTime;
+    m_mainScrnTime = 0;
+    m_pauseTime = 0;
+
+    if (Input.GetButtonDown("Submit"))
+    {
+      m_prevState = m_gameState;
+      m_gameState = GAME_STATE.pause;
+      //TODO: call scene
+    }
+  }
+
+  private void
+    pauseState()
+  {
+    m_mainScrnTime = 0;
+    m_pauseTime += Time.fixedDeltaTime;
+
+    if (Input.GetButtonDown("Submit"))
+    {
+      m_prevState = m_gameState;
+      m_gameState = GAME_STATE.gamePlay;
+      //TODO call scene
     }
   }
 }
