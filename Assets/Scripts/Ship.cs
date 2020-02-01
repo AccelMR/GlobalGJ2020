@@ -30,14 +30,14 @@ public class Ship : MonoBehaviour
   [SerializeField]
   float m_repulsionLimit;
 
-  private Vector2 m_viewDirection;
+  private Vector3 m_viewDirection;
   private List<Vector3> m_forces;
 
 
   // Start is called before the first frame update
   void Awake()
   {
-    m_viewDirection = Vector2.up;
+    m_viewDirection = Vector2.zero;
   }
 
   // Update is called once per frame
@@ -70,8 +70,8 @@ public class Ship : MonoBehaviour
   void
   rotateShip()
   {
-    Vector2 newViewDirection =
-      new Vector2(Input.GetAxis("leftStickX"), -Input.GetAxis("leftStickY"));
+    Vector3 newViewDirection =
+      new Vector3(Input.GetAxis("leftStickX"), 0, Input.GetAxis("leftStickY"));
     m_viewDirection += newViewDirection * Time.fixedDeltaTime * m_rotationSpeed;
     m_viewDirection.Normalize();
   }
