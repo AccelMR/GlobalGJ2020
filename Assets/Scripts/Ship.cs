@@ -8,7 +8,7 @@ public class Ship : MonoBehaviour
   public int m_health;
 
   [SerializeField]
-  float m_shootDistance;
+  float m_shootRange;
 
   [SerializeField]
   int m_shootAngle;
@@ -67,7 +67,8 @@ public class Ship : MonoBehaviour
   OnDrawGizmos()
   {
     Gizmos.color = Color.red;
-    Gizmos.DrawLine(transform.position, transform.position + m_viewDirection);
+    Gizmos.DrawLine(transform.position, 
+                    transform.position + m_viewDirection * m_shootRange);
   }
 #endif
 
