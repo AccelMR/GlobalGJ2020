@@ -5,7 +5,7 @@ using Random = UnityEngine.Random;
 
 public class Gen : MonoBehaviour
 {
-
+  [SerializeField]
   private List<Asteroid> m_listaEstrella;
   public List<Asteroid> ListaEstrella
   {

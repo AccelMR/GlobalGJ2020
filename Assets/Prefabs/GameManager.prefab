@@ -61,7 +61,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e56735264e891d944b59180d9653d0d0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_range: 0
+  m_range: 7
 --- !u!114 &6995917139620359162
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -74,8 +74,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e1a73797e92af6a4f9c3e47ee1b93095, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  m_listaEstrella: []
   m_objeto: {fileID: 6796200093536388451, guid: b6a3965002bcb8b46b2cbb0c816c730f,
     type: 3}
-  m_numObjetos: 20
-  m_rangoMax: 3
+  m_numObjetos: 50
+  m_rangoMax: 5
   m_rangoMin: 1

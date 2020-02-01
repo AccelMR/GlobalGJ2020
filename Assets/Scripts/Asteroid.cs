@@ -29,30 +29,35 @@ public class Asteroid : MonoBehaviour
     }
   }
 
-  public float sizeOfOrbit = 0.5f;
+  public float sizeOfOrbit = 0.4f;
+
+  private float m_atractionForce;
+
 
   // Start is called before the first frame update
   void Start()
   {
-    m_orbit = Mass * sizeOfOrbit;
   }
 
   // Update is called once per frame
   void Update()
   {
-
+    
   }
 
   private void
    updateSize()
   {
     transform.localScale = new Vector3(1, 1, 1) * Mass;
-    m_orbit = Mass * sizeOfOrbit;
+    m_orbit = Mass * 0.5f + (Mass * sizeOfOrbit);
+
   }
 
+#if UNITY_EDITOR
   private void OnDrawGizmos()
   {
-    Gizmos.color = Color.red;
-    Gizmos.DrawWireSphere(transform.position, Orbit + Mass * 0.2f);
+    Gizmos.color = Color.white;
+    Gizmos.DrawWireSphere(transform.position, Orbit);
   }
+ #endif
 }
