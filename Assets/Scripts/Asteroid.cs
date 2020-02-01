@@ -69,7 +69,7 @@ public class Asteroid : MonoBehaviour
   {
     transform.localScale = new Vector3(1, 1, 1) * Mass;
     m_orbit = Mass * 0.5f + (Mass * sizeOfOrbit);
-    var playerDir = GameManager.GameMngr.Player.transform.position - transform.position;
+    var playerDir = transform.position - GameManager.GameMngr.Player.transform.position;
     m_atractionForce = playerDir.normalized * (Mass * 1.0f);
    
   }
@@ -88,7 +88,7 @@ public class Asteroid : MonoBehaviour
     Gizmos.DrawWireSphere(transform.position, Orbit);
 
     Gizmos.color = Color.yellow;
-    var playerDir = GameManager.GameMngr.Player.transform.position - transform.position;
+    var playerDir = transform.position - GameManager.GameMngr.Player.transform.position;
     var from = transform.position +  (playerDir.normalized *  m_orbit);
     var to = from + m_atractionForce;
     Gizmos.DrawLine(from, to);
