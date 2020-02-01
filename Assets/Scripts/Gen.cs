@@ -5,11 +5,12 @@ using Random = UnityEngine.Random;
 
 public class Gen : MonoBehaviour
 {
+   
     private List<Asteroid> m_listaEstrella;
-  public List<Asteroid> ListaEstrella
-  {
-    get { return m_listaEstrella; }
-  }
+    public List<Asteroid> ListaEstrella
+    {
+        get { return m_listaEstrella; }
+    }
     [SerializeField]
     Asteroid m_objeto;
     [SerializeField]
@@ -33,13 +34,13 @@ public class Gen : MonoBehaviour
     {
         m_listaEstrella = new List<Asteroid>();
         
-        generar_bolas(m_objeto);        
+        generar_bolas(m_objeto);
+        
     }
 
     // Update is called once per frame
     void Update()
-    {
-        
+    { 
     }
 
     void generar_bolas(Asteroid m_objeto)
@@ -49,13 +50,18 @@ public class Gen : MonoBehaviour
             m_randSize = UnityEngine.Random.Range(m_rangoMin, m_rangoMax);
             m_randPosVector.x = (UnityEngine.Random.Range(-38, 38));
             m_randPosVector.z = (Random.Range(-38, 38));
+            //instanciado
             objetoInstaciado = Instantiate<Asteroid>(m_objeto);
             objetoInstaciado.transform.position = m_randPosVector;
             objetoInstaciado.Mass = m_randSize;
+        //  lo meto a la lista
+
             objetoInstaciado.transform.parent = transform;
-            m_listaEstrella.Add(objetoInstaciado); 
+            m_listaEstrella.Add(objetoInstaciado);
+
         }
-    
+      
+      
     }
 
 }
