@@ -25,14 +25,14 @@ public class GameManager : MonoBehaviour
 
   private GAME_STATE m_gameState = GAME_STATE.gamePlay;
 
-  private GameObject m_player;
-  public GameObject Player
+  private Ship m_player;
+  public Ship Player
   {
     get
     {
       if (null == m_player)
       {
-        m_player = GameObject.FindGameObjectWithTag("player");
+        m_player = FindObjectOfType<Ship>();
       }
       return m_player;
     }
@@ -54,8 +54,17 @@ public class GameManager : MonoBehaviour
   void Start()
   {
   }
+
   private void Awake()
   {
+    // if the singleton hasn't been initialized yet
+    if (gameMngr != null && gameMngr != this)
+    {
+      Destroy(this.gameObject);
+    }
+
+    gameMngr = this;
+
     DontDestroyOnLoad(this.gameObject);
   }
 

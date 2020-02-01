@@ -53,6 +53,6 @@ public class Asteroid : MonoBehaviour
   private void OnDrawGizmos()
   {
     Gizmos.color = Color.red;
-    Gizmos.DrawWireSphere(transform.position, Orbit);
+    Gizmos.DrawWireSphere(transform.position, Orbit + Mass * 0.2f);
   }
 }
