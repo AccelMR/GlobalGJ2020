@@ -4,18 +4,8 @@ using UnityEngine;
 
 public class ForcesManager : MonoBehaviour
 {
-  private Gen m_asteroidGenerator;
-  public Gen AsteroidGenerator
-  {
-    get
-    {
-      if (null == m_asteroidGenerator)
-      {
-        m_asteroidGenerator = FindObjectOfType<Gen>();
-      }
-      return m_asteroidGenerator;
-    }
-  }
+  [SerializeField]
+  private float m_range;
 
   // Start is called before the first frame update
   void Start()
@@ -25,14 +15,23 @@ public class ForcesManager : MonoBehaviour
   // Update is called once per frame
   void Update()
   {
-    var asteroidList = AsteroidGenerator.ListaEstrella;
+    var asteroidList = GameManager.GameMngr.AsteroidGenerator.ListaEstrella;
     var player = GameManager.GameMngr.Player;
 
     foreach (var asteroid in asteroidList)
     {
-      Vector3 distance = player.transform.position - asteroid.transform.position;
+      var distance = player.transform.position - asteroid.transform.position;
       Debug.Log(distance.magnitude);
     }
+
+  }
+
+  private void OnDrawGizmos()
+  {
+    var player = GameManager.GameMngr.Player;
+
+    Gizmos.color = Color.black;
+    Gizmos.DrawWireSphere(player.transform.position, m_range);
 
   }
 }
