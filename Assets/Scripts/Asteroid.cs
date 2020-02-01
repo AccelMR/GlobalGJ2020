@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class Asteroid : MonoBehaviour
 {
+  [SerializeField]
   private float m_orbit;
   public float Orbit
   {
@@ -13,7 +14,8 @@ public class Asteroid : MonoBehaviour
     }
   }
 
-  private float m_mass = 3;
+  [SerializeField]
+  private float m_mass;
   public float Mass
   {
     get
@@ -23,15 +25,13 @@ public class Asteroid : MonoBehaviour
     set
     {
       m_mass = value;
-      
+      updateSize();      
     }
   }
 
   // Start is called before the first frame update
   void Start()
   {
-    transform.localScale *= Mass;
-    m_orbit = Mass * 0.5f;
   }
 
   // Update is called once per frame
@@ -44,6 +44,12 @@ public class Asteroid : MonoBehaviour
    updateSize()
   {
     transform.localScale *= Mass;
-    m_orbit = Mass * 0.5f;
+    m_orbit = Mass * 0.7f;
+  }
+
+  private void OnDrawGizmos()
+  {
+    Gizmos.color = Color.red;
+    Gizmos.DrawWireSphere(transform.position, Orbit);
   }
 }
