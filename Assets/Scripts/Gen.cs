@@ -5,7 +5,11 @@ using Random = UnityEngine.Random;
 
 public class Gen : MonoBehaviour
 {
-    List<Asteroid> m_listaEstrella;
+    private List<Asteroid> m_listaEstrella;
+  public List<Asteroid> ListaEstrella
+  {
+    get { return m_listaEstrella; }
+  }
     [SerializeField]
     Asteroid m_objeto;
     [SerializeField]
@@ -29,8 +33,7 @@ public class Gen : MonoBehaviour
     {
         m_listaEstrella = new List<Asteroid>();
         
-        generar_bolas(m_objeto);
-        
+        generar_bolas(m_objeto);        
     }
 
     // Update is called once per frame

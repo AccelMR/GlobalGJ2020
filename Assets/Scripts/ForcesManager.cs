@@ -4,8 +4,6 @@ using UnityEngine;
 
 public class ForcesManager : MonoBehaviour
 {
-  private List<GameObject> m_asteroids;
-
   // Start is called before the first frame update
   void Start()
   {
