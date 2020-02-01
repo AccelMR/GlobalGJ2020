@@ -78,10 +78,10 @@ public class Ship : MonoBehaviour
   void
   rotateShip()
   {
-    Vector2 newViewDirection =
-      new Vector2(Input.GetAxis("leftStickX"), -Input.GetAxis("leftStickY"));
-    m_viewDirection += newViewDirection * Time.fixedDeltaTime * m_rotationSpeed;
-    m_viewDirection.Normalize();
+   // Vector2 newViewDirection =
+   //   new Vector2(Input.GetAxis("leftStickX"), -Input.GetAxis("leftStickY"));
+   // m_viewDirection += newViewDirection * Time.fixedDeltaTime * m_rotationSpeed;
+   // m_viewDirection.Normalize();
   }
 
   void
