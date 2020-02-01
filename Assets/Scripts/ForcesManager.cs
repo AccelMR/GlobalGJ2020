@@ -24,9 +24,8 @@ public class ForcesManager : MonoBehaviour
     foreach (var asteroid in asteroidList)
     {
       var Distance = (player.transform.position - asteroid.transform.position).magnitude;
-      Distance -= player.Radius;
       var minDistance = asteroid.Orbit;
-      if (Distance < m_range)
+      if (Distance - player.Radius < minDistance)
       {
         forcesAppliable.Add(asteroid.AtractionForce);
 
@@ -34,12 +33,11 @@ public class ForcesManager : MonoBehaviour
       }
     }
 
-
-
-    if (i > 0)
+    if(i > 0)
     {
-      Debug.Log("Possibility to collide with: " + i);
+      Debug.Log(i);
     }
+
   }
 
 
@@ -58,7 +56,7 @@ public class ForcesManager : MonoBehaviour
     {
       var sqrDistance = (player.transform.position - asteroid.transform.position).magnitude;
 
-      if (sqrDistance - 0.86f < asteroid.Orbit)
+      if (sqrDistance - player.Radius < asteroid.Orbit)
       {
         Gizmos.color = Color.cyan;
         Gizmos.DrawLine(asteroid.transform.position, player.transform.position);
