@@ -16,23 +16,23 @@ public class Ship : MonoBehaviour
   [SerializeField]
   int m_ammo;
 
-  private Vector3 m_viewDirection;
+  [SerializeField]
+  float m_rotationSpeed;
+
+  private Vector2 m_viewDirection;
   private List<Vector2> m_forces;
 
 
   // Start is called before the first frame update
   void Awake()
   {
-    m_viewDirection = Vector3.up;
+    m_viewDirection = Vector2.up;
   }
 
   // Update is called once per frame
   void Update()
   {
-    if(Input.GetAxis("Horizontal") < 0)
-    {
-      rotateShip();
-    }
+    rotateShip();
   }
 
   void
@@ -47,17 +47,33 @@ public class Ship : MonoBehaviour
     m_health += _healt;
   }
 
+#if UNITY_EDITOR
   void 
   OnDrawGizmos()
   {
     Gizmos.color = Color.red;
     Gizmos.DrawLine(transform.position, m_viewDirection);
   }
+#endif
 
   void
   rotateShip()
   {
-    Debug.Log("rotando xddxdd");
+    Vector2 newViewDirection =
+      new Vector2(Input.GetAxis("leftStickX"), -Input.GetAxis("leftStickY"));
+    m_viewDirection += newViewDirection * Time.fixedDeltaTime * m_rotationSpeed;
+    float t = m_viewDirection.magnitude;
+    m_viewDirection.Normalize();
+  }
+
+  void
+  attraction()    
+  {
+  }
+
+  void
+  repulsion()
+  {
   }
 
 }
