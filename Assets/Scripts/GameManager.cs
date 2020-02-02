@@ -127,6 +127,11 @@ public class GameManager : MonoBehaviour
       default:
         break;
     }
+
+    if(Input.GetKey("up")){
+      changeState(GAME_STATE.gamePlay);
+    }
+
   }
 
   private void
