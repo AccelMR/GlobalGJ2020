@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 705507994}
-  m_IndirectSpecularColor: {r: 0.44407064, g: 0.49348116, b: 0.57292056, a: 1}
+  m_IndirectSpecularColor: {r: 0.44407028, g: 0.49348074, b: 0.57291996, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -188,6 +188,46 @@ PrefabInstance:
       propertyPath: m_Name
       value: GameManager
       objectReference: {fileID: 0}
+<<<<<<< Updated upstream
+=======
+    - target: {fileID: 6995917139620359162, guid: 9a2c0e5e482175448a5e80c60893e778,
+        type: 3}
+      propertyPath: m_rangoPosicion.x
+      value: 50
+      objectReference: {fileID: 0}
+    - target: {fileID: 6995917139620359162, guid: 9a2c0e5e482175448a5e80c60893e778,
+        type: 3}
+      propertyPath: m_rangoPosicion.y
+      value: 50
+      objectReference: {fileID: 0}
+    - target: {fileID: 6995917139620359162, guid: 9a2c0e5e482175448a5e80c60893e778,
+        type: 3}
+      propertyPath: m_rangoPosicion.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6995917139620359162, guid: 9a2c0e5e482175448a5e80c60893e778,
+        type: 3}
+      propertyPath: m_materialObj
+      value: 
+      objectReference: {fileID: 2419094102480364752, guid: 557301c698628bb4fad42dd4790994b3,
+        type: 3}
+    - target: {fileID: 6995917139620359162, guid: 9a2c0e5e482175448a5e80c60893e778,
+        type: 3}
+      propertyPath: m_objeto
+      value: 
+      objectReference: {fileID: 724813574874984906, guid: b6a3965002bcb8b46b2cbb0c816c730f,
+        type: 3}
+    - target: {fileID: 6995917139620359162, guid: 9a2c0e5e482175448a5e80c60893e778,
+        type: 3}
+      propertyPath: m_numObjetos
+      value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 6995917139620359162, guid: 9a2c0e5e482175448a5e80c60893e778,
+        type: 3}
+      propertyPath: m_porcentajeMaterial
+      value: 10
+      objectReference: {fileID: 0}
+>>>>>>> Stashed changes
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9a2c0e5e482175448a5e80c60893e778, type: 3}
 --- !u!1001 &636991463
