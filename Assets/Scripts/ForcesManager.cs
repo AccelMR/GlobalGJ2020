@@ -35,6 +35,8 @@ public class ForcesManager : MonoBehaviour
         }
       }
     }
+
+    player.addForces(forcesAppliable);
   }
 
 
