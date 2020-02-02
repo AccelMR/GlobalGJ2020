@@ -117,7 +117,7 @@ public class Ship : MonoBehaviour
   public void
   addForces(List<Vector3> _forces)
   {
-
+    m_forces = _forces;
   }
   private void OnTriggerEnter(Collider other)
   {

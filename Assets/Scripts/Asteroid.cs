@@ -29,7 +29,7 @@ public class Asteroid : MonoBehaviour
     }
   }
 
-  public float sizeOfOrbit = 0.4f;
+  public float sizeOfOrbit = 1.2f;
 
   private Vector3 m_atractionForce;
   public Vector3 AtractionForce
@@ -40,6 +40,7 @@ public class Asteroid : MonoBehaviour
     }
   }
 
+  const float Radius = 0.5f;
 
   private Vector3 m_foroceApplied;
   private bool wasForceApplied = false;
@@ -53,14 +54,14 @@ public class Asteroid : MonoBehaviour
 
   // Update is called once per frame
   void Update()
-  {
-    var playerDir = GameManager.GameMngr.Player.transform.position - transform.position;
-    m_atractionForce = playerDir.normalized * (Mass * 1.0f);
-
+  { 
   }
 
   private void FixedUpdate()
   {
+    var playerDir = transform.position - GameManager.GameMngr.Player.transform.position;
+    m_atractionForce = playerDir.normalized * (Mass * 0.1f);
+
     if (wasForceApplied)
     {
       transform.position = m_foroceApplied * Time.fixedDeltaTime * m_velocity;
@@ -71,9 +72,7 @@ public class Asteroid : MonoBehaviour
    updateSize()
   {
     transform.localScale = new Vector3(1, 1, 1) * Mass;
-    m_orbit = Mass * 0.5f + (Mass * sizeOfOrbit);
-    var playerDir = transform.position - GameManager.GameMngr.Player.transform.position;
-    m_atractionForce = playerDir.normalized * (Mass * 1.0f);
+    m_orbit = Mass * Radius + (Mass * sizeOfOrbit);
    
   }
 
@@ -92,7 +91,7 @@ public class Asteroid : MonoBehaviour
 
     Gizmos.color = Color.yellow;
     var playerDir = transform.position - GameManager.GameMngr.Player.transform.position;
-    var from = transform.position +  (playerDir.normalized *  m_orbit);
+    var from = transform.position + (playerDir.normalized * m_orbit);
     var to = from + m_atractionForce;
     Gizmos.DrawLine(from, to);
   }
