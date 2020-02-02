@@ -133,10 +133,8 @@ GameObject:
   - component: {fileID: 149219876}
   - component: {fileID: 149219875}
   - component: {fileID: 149219874}
-  - component: {fileID: 149219877}
-  - component: {fileID: 149219878}
   m_Layer: 5
-  m_Name: Exit
+  m_Name: Return
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -205,9 +203,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 149219877}
-        m_MethodName: Quit
-        m_Mode: 1
+      - m_Target: {fileID: 1889710464}
+        m_MethodName: OpenLevel
+        m_Mode: 3
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -252,31 +250,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 149219872}
   m_CullTransparentMesh: 0
---- !u!114 &149219877
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 149219872}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f77e6c7ca817e4c428a18c1a6768567b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &149219878
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 149219872}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f29b8a4e8061c654ca80b2afc742b8fd, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  mLevel: 0
 --- !u!1 &162182812
 GameObject:
   m_ObjectHideFlags: 0
@@ -290,7 +263,7 @@ GameObject:
   - component: {fileID: 162182815}
   - component: {fileID: 162182814}
   m_Layer: 5
-  m_Name: Return
+  m_Name: Restart
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -360,7 +333,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1115285180}
+      - m_Target: {fileID: 1889710464}
         m_MethodName: OpenLevel
         m_Mode: 3
         m_Arguments:
@@ -457,7 +430,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 0.392}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
@@ -548,7 +521,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 'Exit
+  m_Text: 'Return to main menu
 
 '
 --- !u!222 &344063342
@@ -751,7 +724,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f29b8a4e8061c654ca80b2afc742b8fd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  mLevel: 0
 --- !u!1 &1387554230
 GameObject:
   m_ObjectHideFlags: 0
@@ -1014,7 +986,9 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Return to main menu
+  m_Text: 'Play again
+
+'
 --- !u!222 &1490217356
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -1140,6 +1114,6 @@ MonoBehaviour:
   m_GameObject: {fileID: 1889710462}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 928ef0011aa2ddd48b28f68cad359955, type: 3}
+  m_Script: {fileID: 11500000, guid: f29b8a4e8061c654ca80b2afc742b8fd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
