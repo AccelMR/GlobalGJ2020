@@ -57,7 +57,7 @@ public class Ship : MonoBehaviour
 
   private void Start()
   {
-    m_viewDirection = transform.forward;
+    m_viewDirection = Vector3.zero;
     m_ray = new Ray(transform.position, m_viewDirection);
   }
 
@@ -68,6 +68,7 @@ public class Ship : MonoBehaviour
     if(Input.GetButtonDown("attractionButton"))
     {
       m_ray.direction = m_viewDirection;
+      Debug.DrawRay(transform.position, m_ray.direction);
       if(Physics.Raycast(m_ray, out hit, m_shootRange))
       {
         var target = hit.collider.gameObject;
@@ -114,7 +115,8 @@ public class Ship : MonoBehaviour
   OnDrawGizmos()
   {
     Gizmos.color = Color.red;
-    Gizmos.DrawLine(transform.position, transform.position + m_viewDirection);
+    Gizmos.DrawLine(transform.position, 
+                    transform.position + m_viewDirection * m_shootRange);
     //Gizmos.DrawLine(transform.position, 
     //                transform.position + m_viewDirection * m_shootRange);
   }
@@ -139,6 +141,8 @@ public class Ship : MonoBehaviour
 
     }
     //transform.forward = m_viewDirection;
+    float rot = Mathf.Atan2(Input.GetAxis("leftStickY"), Input.GetAxis("leftStickX"));
+    transform.Rotate(new Vector3(0, 0, 1), rot);
   }
 
   void
@@ -163,11 +167,11 @@ public class Ship : MonoBehaviour
     if(_target.Mass < m_repulsionLimit)
     {
       Vector3 force = m_viewDirection * m_repulsionForce;
-      //_target.addForce(force);
+      _target.addForce(force);
     }
     else
     {
-      
+
     }
   }
 
@@ -194,6 +198,7 @@ public class Ship : MonoBehaviour
   void
   move()
   {
+    transform.position += m_finalForce * m_velocity * Time.fixedDeltaTime;
   }
 
 }
