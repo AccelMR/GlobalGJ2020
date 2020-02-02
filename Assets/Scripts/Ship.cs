@@ -37,6 +37,8 @@ public class Ship : MonoBehaviour
 
   private Vector3 m_movingDirection;
 
+  private bool isSoundPlaying;
+
   private List<Vector3> m_forces;
   //Raycast for detect targets
   private Ray m_ray;
@@ -89,6 +91,11 @@ public class Ship : MonoBehaviour
     }
     transform.position += finalForce * Time.fixedDeltaTime;
 
+    if(m_velocity != 0 && !isSoundPlaying)
+    {
+      AudioManager.playSound(AudioStuff.Sounds.ShipMovement);
+      isSoundPlaying = true;
+    }
   }
 
   void

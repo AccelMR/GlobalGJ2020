@@ -8,7 +8,7 @@ namespace AudioStuff
   {
     Sound1 = 0,
 
-    TurnAround,
+    ShipMovement,
   
 
     Hit1,
@@ -65,12 +65,14 @@ public class AudioManager : MonoBehaviour
     s_ambientAudioSource = audioSources[2];
     s_EffectsAudioSource = audioSources[3];
 
-//    linkToEnum(AudioStuff.Sounds.Sound1, "Sounds/");
+    //    linkToEnum(AudioStuff.Sounds.Sound1, "Sounds/");
 
-//    linkToEnum(AudioStuff.Sounds.Hit1, "Sounds/");
-  //  linkToEnum(AudioStuff.Sounds.Hit2, "Sounds/");
+    //    linkToEnum(AudioStuff.Sounds.Hit1, "Sounds/");
+    //  linkToEnum(AudioStuff.Sounds.Hit2, "Sounds/");
 
     //linkToEnum(AudioStuff.Sounds.None, "Sounds/Flyboy/");
+
+    linkToEnum(AudioStuff.Sounds.ShipMovement, "Sounds/Ship/Movement1");
 
     linkToEnum(AudioStuff.Sounds.Music1, "Sounds/Music/Music1");
     linkToEnum(AudioStuff.Sounds.MenuMusic, "Sounds/Music/MenuMusic");

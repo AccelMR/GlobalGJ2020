@@ -180,10 +180,13 @@ public class GameManager : MonoBehaviour
         {
             case GAME_STATE.gamePlay:
                 {
+                  if (m_prevState == GAME_STATE.mainScreen)
+                  {
                     SceneManager.LoadScene("GameScene");
                     var spawner = new GameObject("Spawner");
                     spawner.tag = "Spawner";
                     AsteroidGenerator.generarAsteroides();
+                  }
                 }
                 break;
             case GAME_STATE.pause:
