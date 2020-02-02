@@ -23,7 +23,7 @@ public class GameManager : MonoBehaviour
   [SerializeField]
   private float m_gameOverTime = 0;
 
-  private GAME_STATE m_prevState = GAME_STATE.undefined;
+  private GAME_STATE m_prevState = GAME_STATE.mainScreen;
 
   private GAME_STATE m_gameState = GAME_STATE.gamePlay;
   public GAME_STATE GameState
@@ -128,10 +128,10 @@ public class GameManager : MonoBehaviour
         break;
     }
 
-    if (Input.GetButtonDown("Fire1"))
-    {
-      SceneManager.LoadScene("UI_GameOver");
-    }
+    //if (Input.GetButtonDown("Fire1"))
+    //{
+    //  SceneManager.LoadScene("UI_GameOver");
+    //}
 
   }
 
@@ -154,8 +154,10 @@ public class GameManager : MonoBehaviour
       m_prevState = m_gameState;
       m_gameState = GAME_STATE.pause;
       //TODO: call scene
+     
     }
-  }
+       
+    }
 
   private void
     pauseState()
@@ -176,5 +178,36 @@ public class GameManager : MonoBehaviour
   {
     m_prevState = m_gameState;
     m_gameState = state;
-  }
+
+        switch (m_gameState)
+        {
+            case GAME_STATE.gamePlay:
+                {
+                    SceneManager.LoadScene("GameScene");
+                }
+                break;
+            case GAME_STATE.pause:
+                {
+                }
+                break;
+            case GAME_STATE.undefined:
+                {
+                }
+                break;
+            case GAME_STATE.mainScreen:
+                {
+                    SceneManager.LoadScene("GameScene");
+                }
+                break;
+            case GAME_STATE.gameOver:
+                {
+                    SceneManager.LoadScene("UI_GameOver");
+                }
+                break;
+            default:
+                break;
+        }
+
+
+    }
 }
