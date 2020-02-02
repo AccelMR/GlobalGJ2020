@@ -12,10 +12,6 @@ using UnityEngine.Assertions;
 [RequireComponent(typeof(SpriteRenderer))]
 public class ParallaxElement : MonoBehaviour
 {
-  [Tooltip("Offset Between Images")]
-  [SerializeField]
-  public int offset = 2;
-
   [Tooltip("Makes background repeat itself infinitely in given direction.")]
   public ScrollingType scrolling = ScrollingType.NONE;
 
@@ -89,13 +85,13 @@ public class ParallaxElement : MonoBehaviour
       if (scrolling == ScrollingType.HORIZONTAL)
       {
         backgrounds[i].transform.localPosition = transform.localPosition +
-                                                 new Vector3(imageSize.x + offset, 0) *
+                                                 new Vector3(imageSize.x, 0) *
                                                  scrollAmount;
       }
       else if (scrolling == ScrollingType.VERTICAL)
       {
         backgrounds[i].transform.localPosition = transform.localPosition +
-                                                 new Vector3(0, imageSize.y + offset) *
+                                                 new Vector3(0, imageSize.y) *
                                                  scrollAmount;
       }
     }
