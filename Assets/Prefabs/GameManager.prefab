@@ -62,7 +62,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e56735264e891d944b59180d9653d0d0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_range: 7
 --- !u!114 &6995917139620359162
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -78,11 +77,13 @@ MonoBehaviour:
   m_materialObj: {fileID: 2419094102480364752, guid: 557301c698628bb4fad42dd4790994b3,
     type: 3}
   m_objeto: {fileID: 724813574874984906, guid: b6a3965002bcb8b46b2cbb0c816c730f, type: 3}
-  m_numObjetos: 100
+  m_numObjetos: 150
   m_rangoPosicion: {x: 50, y: 50, z: 0}
   m_coeficienteDispersion: 12
   m_iteracionesDispersion: 20
   m_porcentajeMaterial: 20
+  m_minCreation: 0
+  m_maxCreation: 4
 --- !u!1 &3548072430499541486
 GameObject:
   m_ObjectHideFlags: 0

@@ -29,11 +29,15 @@ public class Gen : MonoBehaviour
     int m_iteracionesDispersion;
     [SerializeField]
     int m_porcentajeMaterial;
+  [SerializeField]
+  int m_minCreation = 0;
+  [SerializeField]
+  int m_maxCreation = 0;
 
 
 
-    // Start is called before the first frame update
-    void Start()
+  // Start is called before the first frame update
+  void Start()
     {
         m_numObjetos += (m_numObjetos * m_porcentajeMaterial / 100);
         m_listaEstrella = new List<GameObject>();
@@ -49,7 +53,7 @@ public class Gen : MonoBehaviour
     {
         for (int i = 0; i < m_numObjetos; i++)
         {
-            m_randMass = UnityEngine.Random.Range(0, 3) + 1;
+            m_randMass = UnityEngine.Random.Range(m_minCreation, m_maxCreation) + 1;
             m_asteroidePos.x = (UnityEngine.Random.Range(-m_rangoPosicion.x, m_rangoPosicion.x));
             m_asteroidePos.y = (UnityEngine.Random.Range(-m_rangoPosicion.y, m_rangoPosicion.y));
             if (i < m_numObjetos - (m_numObjetos * m_porcentajeMaterial / 100))

@@ -170,4 +170,11 @@ public class GameManager : MonoBehaviour
       //TODO call scene
     }
   }
+
+  public void 
+    changeState(GAME_STATE state)
+  {
+    m_prevState = m_gameState;
+    m_gameState = state;
+  }
 }
