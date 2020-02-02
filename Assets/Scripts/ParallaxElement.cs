@@ -18,8 +18,11 @@ public class ParallaxElement : MonoBehaviour
   [Tooltip("How Many Scrolling Elements Should be in this layer.")]
   public int scrollingSize = 3;
 
+
   [Tooltip("Set to true to make far away objects move faster than nearby objects.")]
   public bool cylindricalParallax = false;
+
+  
 
   private SpriteRenderer[] images;
 

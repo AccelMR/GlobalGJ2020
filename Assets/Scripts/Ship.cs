@@ -37,6 +37,8 @@ public class Ship : MonoBehaviour
 
   private Vector3 m_movingDirection;
 
+  private bool isSoundPlaying;
+
   private List<Vector3> m_forces;
   //Raycast for detect targets
   private Ray m_ray;
@@ -55,7 +57,7 @@ public class Ship : MonoBehaviour
 
   private void Start()
   {
-    m_viewDirection = transform.forward;
+    m_viewDirection = Vector3.zero;
     m_ray = new Ray(transform.position, m_viewDirection);
   }
 
@@ -66,6 +68,7 @@ public class Ship : MonoBehaviour
     if(Input.GetButtonDown("attractionButton"))
     {
       m_ray.direction = m_viewDirection;
+      Debug.DrawRay(transform.position, m_ray.direction);
       if(Physics.Raycast(m_ray, out hit, m_shootRange))
       {
         var target = hit.collider.gameObject;
@@ -88,6 +91,11 @@ public class Ship : MonoBehaviour
     }
     transform.position += finalForce * Time.fixedDeltaTime;
 
+    if(m_velocity != 0 && !isSoundPlaying)
+    {
+      AudioManager.playSound(AudioStuff.Sounds.ShipMovement);
+      isSoundPlaying = true;
+    }
   }
 
   void
@@ -107,7 +115,8 @@ public class Ship : MonoBehaviour
   OnDrawGizmos()
   {
     Gizmos.color = Color.red;
-    Gizmos.DrawLine(transform.position, transform.position + m_viewDirection);
+    Gizmos.DrawLine(transform.position, 
+                    transform.position + m_viewDirection * m_shootRange);
     //Gizmos.DrawLine(transform.position, 
     //                transform.position + m_viewDirection * m_shootRange);
   }
@@ -116,11 +125,24 @@ public class Ship : MonoBehaviour
   void
   rotateShip()
   {
-    Vector3 newViewDirection =
-      new Vector3(Input.GetAxis("leftStickX"), -Input.GetAxis("leftStickY"), 0 );
-    m_viewDirection += newViewDirection * Time.fixedDeltaTime * m_rotationSpeed;
-    m_viewDirection.Normalize();
+    var xAxis = Input.GetAxis("leftStickX");
+    var yAxis = -Input.GetAxis("leftStickY");
+    if (xAxis > 0.5f || yAxis > 0.5f ||
+      xAxis < -0.5f || yAxis < -0.5f)
+    {
+      Vector3 newViewDirection = new Vector3(xAxis, yAxis, 0);
+      m_viewDirection += newViewDirection * Time.fixedDeltaTime * m_rotationSpeed;
+      m_viewDirection.Normalize();
+
+      var a = Mathf.Atan2(yAxis, xAxis) * Mathf.Rad2Deg;
+      var q = Quaternion.AngleAxis(a, new Vector3(0, 0, 1));
+      var r = Quaternion.Lerp(transform.rotation, q, m_rotationSpeed * Time.fixedDeltaTime);
+      transform.rotation = r;
+
+    }
     //transform.forward = m_viewDirection;
+    float rot = Mathf.Atan2(Input.GetAxis("leftStickY"), Input.GetAxis("leftStickX"));
+    transform.Rotate(new Vector3(0, 0, 1), rot);
   }
 
   void
@@ -145,11 +167,11 @@ public class Ship : MonoBehaviour
     if(_target.Mass < m_repulsionLimit)
     {
       Vector3 force = m_viewDirection * m_repulsionForce;
-      //_target.addForce(force);
+      _target.addForce(force);
     }
     else
     {
-      
+
     }
   }
 
@@ -176,6 +198,7 @@ public class Ship : MonoBehaviour
   void
   move()
   {
+    transform.position += m_finalForce * m_velocity * Time.fixedDeltaTime;
   }
 
 }
