@@ -79,11 +79,13 @@ public class Ship : MonoBehaviour
   private void FixedUpdate()
   {
     Vector3 finalForce = new Vector3(0, 0, 0);
-    foreach (var forces in m_forces)
+    if (null != m_forces)
     {
-      finalForce += forces;
+      foreach (var forces in m_forces)
+      {
+        finalForce += forces;
+      }
     }
-
     transform.position += finalForce * Time.fixedDeltaTime;
 
   }
