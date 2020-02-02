@@ -113,4 +113,9 @@ public class Ship : MonoBehaviour
 
   }
 
+  private void OnCollisionEnter(Collision collision)
+  {
+    Debug.Log("choco wey");
+  }
+
 }
