@@ -4,9 +4,6 @@ using UnityEngine;
 
 public class ForcesManager : MonoBehaviour
 {
-  [SerializeField]
-  private float m_range;
-
   // Start is called before the first frame update
   void Start()
   {
@@ -15,29 +12,29 @@ public class ForcesManager : MonoBehaviour
   // Update is called once per frame
   void Update()
   {
+
+  }
+
+  private void FixedUpdate()
+  {
     var asteroidList = GameManager.GameMngr.AsteroidGenerator.ListaEstrella;
     var player = GameManager.GameMngr.Player;
 
     List<Vector3> forcesAppliable = new List<Vector3>();
 
-    int i = 0;
     foreach (var asteroid in asteroidList)
     {
       var Distance = (player.transform.position - asteroid.transform.position).magnitude;
-      var minDistance = asteroid.GetComponent<Asteroid>().Orbit;
-      if (Distance - player.Radius < minDistance)
+      var real = asteroid.GetComponent<Asteroid>();
+      if (real != null)
       {
-        forcesAppliable.Add(asteroid.GetComponent<Asteroid>().AtractionForce);
-
-        i++;
+        var minDistance = real.Orbit;
+        if (Distance - player.Radius < minDistance)
+        {
+          forcesAppliable.Add(asteroid.GetComponent<Asteroid>().AtractionForce);
+        }
       }
     }
-
-    if(i > 0)
-    {
-      Debug.Log(i);
-    }
-
   }
 
 
@@ -50,13 +47,17 @@ public class ForcesManager : MonoBehaviour
     }
 
     var player = GameManager.GameMngr.Player;
-
     var asteroidList = GameManager.GameMngr.AsteroidGenerator.ListaEstrella;
+
     foreach (var asteroid in asteroidList)
     {
       var sqrDistance = (player.transform.position - asteroid.transform.position).magnitude;
-
-      if (sqrDistance - player.Radius < asteroid.GetComponent<Asteroid>().Orbit)
+      var real = asteroid.GetComponent<Asteroid>();
+      if(real == null)
+      {
+        continue;
+      }
+      if (sqrDistance - player.Radius < real.Orbit)
       {
         Gizmos.color = Color.cyan;
         Gizmos.DrawLine(asteroid.transform.position, player.transform.position);

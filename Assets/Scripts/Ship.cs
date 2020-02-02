@@ -152,6 +152,10 @@ public class Ship : MonoBehaviour
   {
 
   }
+  private void OnTriggerEnter(Collider other)
+  {
+    Debug.Log("choco wey");
+  }
 
   Vector3
   seek(Transform _target)

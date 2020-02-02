@@ -79,10 +79,10 @@ MonoBehaviour:
     type: 3}
   m_objeto: {fileID: 724813574874984906, guid: b6a3965002bcb8b46b2cbb0c816c730f, type: 3}
   m_numObjetos: 100
-  m_rangoPosicion: {x: 30, y: 30, z: 0}
-  m_coeficienteDispersion: 6
-  m_iteracionesDispersion: 10
-  m_porcentajeMaterial: 30
+  m_rangoPosicion: {x: 50, y: 50, z: 0}
+  m_coeficienteDispersion: 12
+  m_iteracionesDispersion: 20
+  m_porcentajeMaterial: 20
 --- !u!1 &3548072430499541486
 GameObject:
   m_ObjectHideFlags: 0
