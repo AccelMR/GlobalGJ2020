@@ -51,6 +51,10 @@ public class Gen : MonoBehaviour
 
     public void generarAsteroides()
     {
+        foreach (GameObject i in m_listaEstrella)
+        {
+            Destroy(i);
+        }
         m_listaEstrella.Clear();
         for (int i = 0; i < m_numObjetos; i++)
         {
