@@ -57,11 +57,14 @@ public class Asteroid : MonoBehaviour
     var playerDir = GameManager.GameMngr.Player.transform.position - transform.position;
     m_atractionForce = playerDir.normalized * (Mass * 1.0f);
 
+  }
+
+  private void FixedUpdate()
+  {
     if (wasForceApplied)
     {
       transform.position = m_foroceApplied * Time.fixedDeltaTime * m_velocity;
     }
-
   }
 
   private void

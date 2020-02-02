@@ -79,6 +79,11 @@ public class Ship : MonoBehaviour
     //m_finalForce = Vector3.zero;
   }
 
+  private void FixedUpdate()
+  {
+    
+  }
+
   void
   receiveDamage(int _damage)
   {
