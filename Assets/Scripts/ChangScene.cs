@@ -18,11 +18,11 @@ public class ChangScene : MonoBehaviour
         {
             GameManager.GameMngr.changeState(GAME_STATE.mainScreen);
         }
-        else if (NumScence == 1)
-        {
-            SceneManager.LoadScene(1);
-        }
         else if (NumScence == 2)
+        {
+            SceneManager.LoadScene(2);
+        }
+        else if (NumScence == 5)
         {
             GameManager.GameMngr.changeState(GAME_STATE.gameOver);
         }
@@ -30,6 +30,10 @@ public class ChangScene : MonoBehaviour
         {
             Debug.Log("Si te vas a salir");
             Application.Quit();
+        }
+        else if (NumScence == 1)
+        {
+            SceneManager.LoadScene(1);
         }
 
     }
