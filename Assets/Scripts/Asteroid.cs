@@ -77,7 +77,7 @@ public class Asteroid : MonoBehaviour
    
   }
 
-  void
+  public void
   addForce(Vector3 foce)
   {
     m_foroceApplied += foce;

@@ -34,6 +34,9 @@ public class Ship : MonoBehaviour
   float m_repulsionLimit;
 
   private Vector3 m_viewDirection;
+
+  private Vector3 m_movingDirection;
+
   private List<Vector3> m_forces;
   //Raycast for detect targets
   private Ray m_ray;
@@ -63,13 +66,11 @@ public class Ship : MonoBehaviour
     if(Input.GetButtonDown("attractionButton"))
     {
       m_ray.direction = m_viewDirection;
-      
-      Debug.DrawRay(transform.position, m_ray.direction * m_shootRange);
-
       if(Physics.Raycast(m_ray, out hit, m_shootRange))
       {
-        var target = hit.transform;
-        m_finalForce = attraction(target);
+        var target = hit.collider.gameObject;
+        Asteroid asteroid = target.GetComponent<Asteroid>();
+        m_finalForce = attraction(asteroid);
       }
     }
     if(m_finalForce != Vector3.zero)
@@ -117,19 +118,19 @@ public class Ship : MonoBehaviour
   }
 
   Vector3
-  attraction(Transform _target)
+  attraction(Asteroid _target)
   {
     Vector3 force;
-/*
+
     if (_target.Mass < m_attractionMassLimit)
     {
        force = seek(_target.transform);
-      //_target.addForce(force);
-    }*/
-    //else
-    //{
+      _target.addForce(force);
+    }
+    else
+    {
       return force = seek(_target);
-    //}
+    }
   }
 
   void
@@ -162,15 +163,8 @@ public class Ship : MonoBehaviour
   }
 
   void
-  move(Vector3 finalForce)
+  move()
   {
-    float distance = (transform.position - hit.transform.position).magnitude;
-    if(distance < 0.1f)
-    {
-      m_finalForce = Vector3.zero;
-    }
-    transform.position += finalForce * m_velocity * Time.fixedDeltaTime;
-    
   }
 
 }
