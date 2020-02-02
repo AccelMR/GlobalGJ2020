@@ -315,7 +315,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f29b8a4e8061c654ca80b2afc742b8fd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  mLevel: 0
 --- !u!1 &899987634
 GameObject:
   m_ObjectHideFlags: 0
@@ -360,7 +359,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f29b8a4e8061c654ca80b2afc742b8fd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  mLevel: 1
 --- !u!1 &1032355073
 GameObject:
   m_ObjectHideFlags: 0
@@ -445,11 +443,11 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 652349847}
         m_MethodName: OpenLevel
-        m_Mode: 1
+        m_Mode: 3
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
+          m_IntArgument: 3
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0
@@ -1111,11 +1109,11 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 899987636}
         m_MethodName: OpenLevel
-        m_Mode: 1
+        m_Mode: 3
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
+          m_IntArgument: 1
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0

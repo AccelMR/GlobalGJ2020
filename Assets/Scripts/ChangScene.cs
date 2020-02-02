@@ -5,11 +5,13 @@ using UnityEditor;
 using UnityEngine.SceneManagement;
 public class ChangScene : MonoBehaviour
 {
-    public int mLevel;
-    public void OpenLevel()
+    
+    public void OpenLevel(int Lmao)
     {
-        SceneManager.LoadScene(mLevel);
+  
+        SceneManager.LoadScene(Lmao);
+       
     }
     // Start is called before the first frame update
- 
+
 }
