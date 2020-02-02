@@ -128,11 +128,14 @@ public class GameManager : MonoBehaviour
         break;
     }
 
+<<<<<<< HEAD
     //if (Input.GetButtonDown("Fire1"))
     //{
     //  SceneManager.LoadScene("UI_GameOver");
     //}
 
+=======
+>>>>>>> Development
   }
 
   private void
