@@ -13,6 +13,10 @@ namespace AudioStuff
 
     Hit1,
     Hit2,
+    Repair1,
+    Repair2,
+    ShipDamage,
+    Explosion,
 
 
     None, // TODO: NO SERIOUSLY, WHY IS THIS HERE? SHOULDN't IT BE None = 0?
@@ -23,7 +27,6 @@ namespace AudioStuff
    
     Ambient1,
    
-    Explosion,
 
 
     Length // Size of the enum
@@ -67,8 +70,12 @@ public class AudioManager : MonoBehaviour
 
     //    linkToEnum(AudioStuff.Sounds.Sound1, "Sounds/");
 
-    //    linkToEnum(AudioStuff.Sounds.Hit1, "Sounds/");
-    //  linkToEnum(AudioStuff.Sounds.Hit2, "Sounds/");
+      linkToEnum(AudioStuff.Sounds.Hit1, "Sounds/Ship/Crash1");
+      linkToEnum(AudioStuff.Sounds.Hit2, "Sounds/Ship/Crash2");
+      linkToEnum(AudioStuff.Sounds.Repair1, "Sounds/Ship/Repair1");
+      linkToEnum(AudioStuff.Sounds.Repair2, "Sounds/Ship/Repair2");
+      linkToEnum(AudioStuff.Sounds.ShipDamage, "Sounds/Ship/ShipDamage");
+      linkToEnum(AudioStuff.Sounds.Explosion, "Sounds/Ship/Explosion");
 
     //linkToEnum(AudioStuff.Sounds.None, "Sounds/Flyboy/");
 
@@ -198,6 +205,16 @@ public class AudioManager : MonoBehaviour
   public static void changebgMusicVolume(float newVolume)
   {
     s_bgMusicAudioSource.volume = newVolume;
+  }
+
+  public static void changeEffectsVolume(float newVolume)
+  {
+    s_EffectsAudioSource.volume = newVolume;
+  }
+
+  public static void changeEffectsVolume(float newVolume, float volumeSpeedChange)
+  {
+    s_EffectsAudioSource.volume = Mathf.Lerp(s_EffectsAudioSource.volume, newVolume, Time.deltaTime * volumeSpeedChange);
   }
 
   public static void changeMusicPitchAndVolume(bool changePitch, bool changeVolume, float changeMusicPitchTo, float pitchSpeedChange, float changeMusicVolumeTo, float volumeSpeedChange)

@@ -95,6 +95,8 @@ public class Ship : MonoBehaviour
     {
       AudioManager.playSound(AudioStuff.Sounds.ShipMovement);
       isSoundPlaying = true;
+      AudioManager.changeEffectsVolume(.8f*m_velocity);
+      Debug.Log(m_velocity);
     }
   }
 
@@ -102,12 +104,30 @@ public class Ship : MonoBehaviour
   receiveDamage(int _damage)
   {
     m_health -= _damage;
+  
+      AudioManager.playSound(AudioStuff.Sounds.ShipDamage);
+    if(m_health == 0)
+    {
+      AudioManager.playSound(AudioStuff.Sounds.Explosion);
+    }
   }
 
   void
   addHealth(int _healt)
   {
     m_health += _healt;
+    System.Random rand = new System.Random();
+    int randomNumber = rand.Next(0, 1);
+    //   Debug.Log(randomNumber);
+    if (randomNumber == 0)
+    {
+      AudioManager.playSound(AudioStuff.Sounds.Repair1);
+    }
+    if (randomNumber == 1)
+    {
+      AudioManager.playSound(AudioStuff.Sounds.Repair2);
+    }
+   
   }
 
 #if UNITY_EDITOR
@@ -183,7 +203,18 @@ public class Ship : MonoBehaviour
 
   private void OnTriggerEnter(Collider other)
   {
-    Debug.Log("choco wey");
+    System.Random rand = new System.Random();
+    int randomNumber = rand.Next(0, 1);
+    //   Debug.Log(randomNumber);
+    if (randomNumber == 0)
+    {
+      AudioManager.playSound(AudioStuff.Sounds.Hit1);
+    }
+    if (randomNumber == 1)
+    {
+      AudioManager.playSound(AudioStuff.Sounds.Hit2);
+    }
+       Debug.Log("choco wey");
   }
 
   Vector3
