@@ -10,7 +10,7 @@ public class CameraMov : MonoBehaviour
 	// Start is called before the first frame update
 
 	private bool m_smooth = true;
-	private float m_smoothVel = 0.125f;
+	private float m_smoothVel = 0.08f;
 	private Vector3 m_offset = new Vector3(0, 0, -32);
 
 
@@ -26,11 +26,11 @@ public class CameraMov : MonoBehaviour
 
 	private void FixedUpdate()
 	{
-    if (Input.GetKey(KeyCode.W))
+    if (Input.GetAxis("cameraZoomIn") > 0)
     {
       m_offset += new Vector3(0, 0, -1);
     }
-    if (Input.GetKey(KeyCode.S))
+    if (Input.GetAxis("cameraZoomOut") > 0)
     {
       m_offset += new Vector3(0, 0, 1);
     }

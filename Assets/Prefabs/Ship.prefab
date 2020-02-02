@@ -88,11 +88,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_health: 0
-  m_shootRange: 0
+  m_shootRange: 20
   m_shootAngle: 0
   m_ammo: 0
   m_rotationSpeed: 3
-  m_velocity: 0
+  m_velocity: 1
   m_repulsionForce: 0
   m_attractionMassLimit: 0
   m_repulsionLimit: 0
