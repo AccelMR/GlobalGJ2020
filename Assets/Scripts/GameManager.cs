@@ -23,9 +23,9 @@ public class GameManager : MonoBehaviour
   [SerializeField]
   private float m_gameOverTime = 0;
 
-  private GAME_STATE m_prevState = GAME_STATE.mainScreen;
+  private GAME_STATE m_prevState = GAME_STATE.undefined;
 
-  private GAME_STATE m_gameState = GAME_STATE.gamePlay;
+  private GAME_STATE m_gameState = GAME_STATE.mainScreen;
   public GAME_STATE GameState
   {
     get { return m_gameState; }
@@ -127,15 +127,6 @@ public class GameManager : MonoBehaviour
       default:
         break;
     }
-
-<<<<<<< HEAD
-    //if (Input.GetButtonDown("Fire1"))
-    //{
-    //  SceneManager.LoadScene("UI_GameOver");
-    //}
-
-=======
->>>>>>> Development
   }
 
   private void
@@ -143,9 +134,7 @@ public class GameManager : MonoBehaviour
   {
     if (m_gameTime <= 0 || m_prevState == GAME_STATE.mainScreen)
     {
-      var spawner = new GameObject("Spawner");
-      spawner.tag = "Spawner";
-      AsteroidGenerator.generarAsteroides();
+
     }
 
     m_gameTime += Time.fixedDeltaTime;
@@ -187,6 +176,9 @@ public class GameManager : MonoBehaviour
             case GAME_STATE.gamePlay:
                 {
                     SceneManager.LoadScene("GameScene");
+                    var spawner = new GameObject("Spawner");
+                    spawner.tag = "Spawner";
+                    AsteroidGenerator.generarAsteroides();
                 }
                 break;
             case GAME_STATE.pause:
