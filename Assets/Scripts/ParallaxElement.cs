@@ -12,14 +12,21 @@ using UnityEngine.Assertions;
 [RequireComponent(typeof(SpriteRenderer))]
 public class ParallaxElement : MonoBehaviour
 {
+  [Tooltip("Offset Between Images")]
+  [SerializeField]
+  public int offset = 2;
+
   [Tooltip("Makes background repeat itself infinitely in given direction.")]
   public ScrollingType scrolling = ScrollingType.NONE;
 
   [Tooltip("How Many Scrolling Elements Should be in this layer.")]
   public int scrollingSize = 3;
 
+
   [Tooltip("Set to true to make far away objects move faster than nearby objects.")]
   public bool cylindricalParallax = false;
+
+  
 
   private SpriteRenderer[] images;
 
@@ -82,13 +89,13 @@ public class ParallaxElement : MonoBehaviour
       if (scrolling == ScrollingType.HORIZONTAL)
       {
         backgrounds[i].transform.localPosition = transform.localPosition +
-                                                 new Vector3(imageSize.x, 0) *
+                                                 new Vector3(imageSize.x + offset, 0) *
                                                  scrollAmount;
       }
       else if (scrolling == ScrollingType.VERTICAL)
       {
         backgrounds[i].transform.localPosition = transform.localPosition +
-                                                 new Vector3(0, imageSize.y) *
+                                                 new Vector3(0, imageSize.y + offset) *
                                                  scrollAmount;
       }
     }
