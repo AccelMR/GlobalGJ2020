@@ -25,7 +25,7 @@ public class GameManager : MonoBehaviour
 
   private GAME_STATE m_prevState = GAME_STATE.undefined;
 
-  private GAME_STATE m_gameState = GAME_STATE.gamePlay;
+  private GAME_STATE m_gameState = GAME_STATE.mainScreen;
   public GAME_STATE GameState
   {
     get { return m_gameState; }
@@ -128,6 +128,10 @@ public class GameManager : MonoBehaviour
         break;
     }
 
+    if(Input.GetKey("up")){
+      changeState(GAME_STATE.gamePlay);
+    }
+
   }
 
   private void
@@ -135,9 +139,7 @@ public class GameManager : MonoBehaviour
   {
     if (m_gameTime <= 0 || m_prevState == GAME_STATE.mainScreen)
     {
-      var spawner = new GameObject("Spawner");
-      spawner.tag = "Spawner";
-      AsteroidGenerator.generarAsteroides();
+
     }
 
     m_gameTime += Time.fixedDeltaTime;
@@ -149,8 +151,10 @@ public class GameManager : MonoBehaviour
       m_prevState = m_gameState;
       m_gameState = GAME_STATE.pause;
       //TODO: call scene
+     
     }
-  }
+       
+    }
 
   private void
     pauseState()
@@ -171,5 +175,39 @@ public class GameManager : MonoBehaviour
   {
     m_prevState = m_gameState;
     m_gameState = state;
-  }
+
+        switch (m_gameState)
+        {
+            case GAME_STATE.gamePlay:
+                {
+                    SceneManager.LoadScene("GameScene");
+                    var spawner = new GameObject("Spawner");
+                    spawner.tag = "Spawner";
+                    AsteroidGenerator.generarAsteroides();
+                }
+                break;
+            case GAME_STATE.pause:
+                {
+                }
+                break;
+            case GAME_STATE.undefined:
+                {
+                }
+                break;
+            case GAME_STATE.mainScreen:
+                {
+                    SceneManager.LoadScene("GameScene");
+                }
+                break;
+            case GAME_STATE.gameOver:
+                {
+                    SceneManager.LoadScene("UI_GameOver");
+                }
+                break;
+            default:
+                break;
+        }
+
+
+    }
 }

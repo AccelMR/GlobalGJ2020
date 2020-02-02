@@ -344,6 +344,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3743791706573670100, guid: 33df168c82b7d434da6bcb4376884118,
+        type: 3}
+      propertyPath: m_rotationSpeed
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 3743791706573670101, guid: 33df168c82b7d434da6bcb4376884118,
         type: 3}
       propertyPath: m_Name
@@ -447,7 +452,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   scrolling: 2
-  scrollingSize: 5
+  scrollingSize: 3
   cylindricalParallax: 0
 --- !u!114 &5546722265456935126
 MonoBehaviour:
@@ -479,7 +484,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   scrolling: 1
-  scrollingSize: 8
+  scrollingSize: 3
   cylindricalParallax: 0
 --- !u!212 &8751036567196533273
 SpriteRenderer:
