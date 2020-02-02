@@ -46,7 +46,7 @@ public class Ship : MonoBehaviour
   {
     get
     {
-      return 0.86f;
+      return 0.8f;
     }
   }
 

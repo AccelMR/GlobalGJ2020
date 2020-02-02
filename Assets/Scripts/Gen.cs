@@ -45,7 +45,7 @@ public class Gen : MonoBehaviour
     {
       m_randMass = UnityEngine.Random.Range(0, 3) + 1;
       m_asteroidePos.x = (UnityEngine.Random.Range(-m_rangoPosicion.x, m_rangoPosicion.x));
-      m_asteroidePos.z = (UnityEngine.Random.Range(-m_rangoPosicion.z, m_rangoPosicion.z));
+      m_asteroidePos.y = (UnityEngine.Random.Range(-m_rangoPosicion.y, m_rangoPosicion.y));
       m_objetoInstanciado = Instantiate<Asteroid>(m_objeto);
       m_objetoInstanciado.transform.position = m_asteroidePos;
       m_objetoInstanciado.Mass = m_randMass;
