@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.SceneManagement;
 
 public enum GAME_STATE
@@ -171,15 +169,17 @@ public class GameManager : MonoBehaviour
 
     if (Input.GetButtonDown("pause")&&mPause)
     {
-            
-           
-              
                 mPause = false;
+            changeState(GAME_STATE.gamePlay);
+         //   m_gameTime += (Time.timeScale = 0.0001f);
+         
             
     }
    if(!mPause)
         {
-            changeState(GAME_STATE.gamePlay);
+           
+         //   m_gameTime += (Time.timeScale = 1f);
+            mPause = true;
         }
 
 
@@ -195,13 +195,18 @@ public class GameManager : MonoBehaviour
         {
             case GAME_STATE.gamePlay:
                 {
-                  if (m_prevState == GAME_STATE.mainScreen)
-                  {
-                    SceneManager.LoadScene("GameScene");
-                    var spawner = new GameObject("Spawner");
-                    spawner.tag = "Spawner";
-                    AsteroidGenerator.generarAsteroides();
-                  }
+                    if (m_prevState == GAME_STATE.mainScreen)
+                    {
+                        SceneManager.LoadScene("GameScene");
+                        var spawner = new GameObject("Spawner");
+                        spawner.tag = "Spawner";
+                        AsteroidGenerator.generarAsteroides();
+                    }
+                    else if (m_prevState == GAME_STATE.pause)
+                    {
+
+
+                    }
                 }
                 break;
             case GAME_STATE.pause:
@@ -215,7 +220,7 @@ public class GameManager : MonoBehaviour
                 break;
             case GAME_STATE.mainScreen:
                 {
-                    SceneManager.LoadScene("GameScene");
+                    SceneManager.LoadScene("MainMenuScreen");
                 }
                 break;
             case GAME_STATE.gameOver:
@@ -223,6 +228,7 @@ public class GameManager : MonoBehaviour
                     SceneManager.LoadScene("UI_GameOver");
                 }
                 break;
+
             default:
                 break;
         }

@@ -51,6 +51,7 @@ public class Gen : MonoBehaviour
 
     public void generarAsteroides()
     {
+        m_listaEstrella.Clear();
         for (int i = 0; i < m_numObjetos; i++)
         {
             m_randMass = UnityEngine.Random.Range(m_minCreation, m_maxCreation) + 1;
