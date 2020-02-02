@@ -70,14 +70,10 @@ public class Ship : MonoBehaviour
       {
         var target = hit.collider.gameObject;
         Asteroid asteroid = target.GetComponent<Asteroid>();
-        m_finalForce = attraction(asteroid);
+        attraction(asteroid);
       }
     }
-    if(m_finalForce != Vector3.zero)
-    {
-      move(m_finalForce);
-    }
-    //m_finalForce = Vector3.zero;
+    move();
   }
 
   private void FixedUpdate()
@@ -124,7 +120,7 @@ public class Ship : MonoBehaviour
     transform.forward = m_viewDirection;
   }
 
-  Vector3
+  void
   attraction(Asteroid _target)
   {
     Vector3 force;
@@ -136,7 +132,7 @@ public class Ship : MonoBehaviour
     }
     else
     {
-      return force = seek(_target);
+      m_finalForce = seek(_target.transform);
     }
   }
 
@@ -159,6 +155,7 @@ public class Ship : MonoBehaviour
   {
     m_forces = _forces;
   }
+
   private void OnTriggerEnter(Collider other)
   {
     Debug.Log("choco wey");
