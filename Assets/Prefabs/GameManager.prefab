@@ -75,12 +75,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e1a73797e92af6a4f9c3e47ee1b93095, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_objeto: {fileID: 6796200093536388451, guid: b6a3965002bcb8b46b2cbb0c816c730f,
+  m_materialObj: {fileID: 2419094102480364752, guid: 557301c698628bb4fad42dd4790994b3,
     type: 3}
-  m_numObjetos: 10
-  m_rangoPosicion: {x: 30, y: 0, z: 30}
+  m_objeto: {fileID: 724813574874984906, guid: b6a3965002bcb8b46b2cbb0c816c730f, type: 3}
+  m_numObjetos: 100
+  m_rangoPosicion: {x: 30, y: 30, z: 0}
   m_coeficienteDispersion: 6
   m_iteracionesDispersion: 10
+  m_porcentajeMaterial: 30
 --- !u!1 &3548072430499541486
 GameObject:
   m_ObjectHideFlags: 0

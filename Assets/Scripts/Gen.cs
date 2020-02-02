@@ -51,11 +51,7 @@ public class Gen : MonoBehaviour
         {
             m_randMass = UnityEngine.Random.Range(0, 3) + 1;
             m_asteroidePos.x = (UnityEngine.Random.Range(-m_rangoPosicion.x, m_rangoPosicion.x));
-<<<<<<< Updated upstream
-            m_asteroidePos.z = (UnityEngine.Random.Range(-m_rangoPosicion.z, m_rangoPosicion.z));
-=======
             m_asteroidePos.y = (UnityEngine.Random.Range(-m_rangoPosicion.y, m_rangoPosicion.y));
->>>>>>> Stashed changes
             if (i < m_numObjetos - (m_numObjetos * m_porcentajeMaterial / 100))
                 m_objetoInstanciado = Instantiate<GameObject>(m_objeto);
             else
