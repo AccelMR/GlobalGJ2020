@@ -35,6 +35,12 @@ public class Ship : MonoBehaviour
 
   private Vector3 m_viewDirection;
   private List<Vector3> m_forces;
+  //Raycast for detect targets
+  private Ray m_ray;
+
+  private Vector3 m_finalForce;
+
+  private RaycastHit hit;
 
   public float Radius
   {
@@ -44,10 +50,33 @@ public class Ship : MonoBehaviour
     }
   }
 
+  private void Start()
+  {
+    m_viewDirection = transform.forward;
+    m_ray = new Ray(transform.position, m_viewDirection);
+  }
+
   // Update is called once per frame
   void Update()
   {
     rotateShip();
+    if(Input.GetButtonDown("attractionButton"))
+    {
+      m_ray.direction = m_viewDirection;
+      
+      Debug.DrawRay(transform.position, m_ray.direction * m_shootRange);
+
+      if(Physics.Raycast(m_ray, out hit, m_shootRange))
+      {
+        var target = hit.transform;
+        m_finalForce = attraction(target);
+      }
+    }
+    if(m_finalForce != Vector3.zero)
+    {
+      move(m_finalForce);
+    }
+    //m_finalForce = Vector3.zero;
   }
 
   void
@@ -76,26 +105,26 @@ public class Ship : MonoBehaviour
   rotateShip()
   {
     Vector3 newViewDirection =
-      new Vector3(Input.GetAxis("leftStickX"), 0, Input.GetAxis("leftStickY") * -1);
+      new Vector3(Input.GetAxis("leftStickX"), Input.GetAxis("leftStickY"), 0 );
     m_viewDirection += newViewDirection * Time.fixedDeltaTime * m_rotationSpeed;
     m_viewDirection.Normalize();
     transform.forward = m_viewDirection;
   }
 
-  void
-  attraction(Asteroid _target)
+  Vector3
+  attraction(Transform _target)
   {
     Vector3 force;
+/*
     if (_target.Mass < m_attractionMassLimit)
     {
        force = seek(_target.transform);
       //_target.addForce(force);
-    }
-    else
-    {
-      force = seek(transform);
-      transform.position += force * Time.fixedDeltaTime;
-    }
+    }*/
+    //else
+    //{
+      return force = seek(_target);
+    //}
   }
 
   void
@@ -121,10 +150,22 @@ public class Ship : MonoBehaviour
   Vector3
   seek(Transform _target)
   {
-    Vector3 forceV = transform.position - _target.position;
+    Vector3 forceV = _target.position - transform.position;
     forceV.Normalize();
     forceV *= m_velocity;
     return forceV;
+  }
+
+  void
+  move(Vector3 finalForce)
+  {
+    float distance = (transform.position - hit.transform.position).magnitude;
+    if(distance < 0.1f)
+    {
+      m_finalForce = Vector3.zero;
+    }
+    transform.position += finalForce * m_velocity * Time.fixedDeltaTime;
+    
   }
 
 }
