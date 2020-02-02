@@ -54,6 +54,11 @@ public class Ship : MonoBehaviour
     rotateShip();
   }
 
+  private void FixedUpdate()
+  {
+    
+  }
+
   void
   receiveDamage(int _damage)
   {

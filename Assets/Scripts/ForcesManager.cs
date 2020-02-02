@@ -24,10 +24,10 @@ public class ForcesManager : MonoBehaviour
     foreach (var asteroid in asteroidList)
     {
       var Distance = (player.transform.position - asteroid.transform.position).magnitude;
-      var minDistance = asteroid.Orbit;
+      var minDistance = asteroid.GetComponent<Asteroid>().Orbit;
       if (Distance - player.Radius < minDistance)
       {
-        forcesAppliable.Add(asteroid.AtractionForce);
+        forcesAppliable.Add(asteroid.GetComponent<Asteroid>().AtractionForce);
 
         i++;
       }
@@ -56,7 +56,7 @@ public class ForcesManager : MonoBehaviour
     {
       var sqrDistance = (player.transform.position - asteroid.transform.position).magnitude;
 
-      if (sqrDistance - player.Radius < asteroid.Orbit)
+      if (sqrDistance - player.Radius < asteroid.GetComponent<Asteroid>().Orbit)
       {
         Gizmos.color = Color.cyan;
         Gizmos.DrawLine(asteroid.transform.position, player.transform.position);
