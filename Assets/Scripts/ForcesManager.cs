@@ -17,6 +17,10 @@ public class ForcesManager : MonoBehaviour
 
   private void FixedUpdate()
   {
+    if(GameManager.GameMngr.GameState != GAME_STATE.gamePlay)
+    {
+      return;
+    }
     var asteroidList = GameManager.GameMngr.AsteroidGenerator.ListaEstrella;
     var player = GameManager.GameMngr.Player;
 

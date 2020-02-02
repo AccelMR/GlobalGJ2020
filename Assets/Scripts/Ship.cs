@@ -107,8 +107,9 @@ public class Ship : MonoBehaviour
   OnDrawGizmos()
   {
     Gizmos.color = Color.red;
-    Gizmos.DrawLine(transform.position, 
-                    transform.position + m_viewDirection * m_shootRange);
+    Gizmos.DrawLine(transform.position, transform.position + m_viewDirection);
+    //Gizmos.DrawLine(transform.position, 
+    //                transform.position + m_viewDirection * m_shootRange);
   }
 #endif
 
@@ -116,10 +117,10 @@ public class Ship : MonoBehaviour
   rotateShip()
   {
     Vector3 newViewDirection =
-      new Vector3(Input.GetAxis("leftStickX"), Input.GetAxis("leftStickY"), 0 );
+      new Vector3(Input.GetAxis("leftStickX"), -Input.GetAxis("leftStickY"), 0 );
     m_viewDirection += newViewDirection * Time.fixedDeltaTime * m_rotationSpeed;
     m_viewDirection.Normalize();
-    transform.forward = m_viewDirection;
+    //transform.forward = m_viewDirection;
   }
 
   void
