@@ -22,7 +22,6 @@ public class ForcesManager : MonoBehaviour
 
     List<Vector3> forcesAppliable = new List<Vector3>();
 
-    int i = 0;
     foreach (var asteroid in asteroidList)
     {
       var Distance = (player.transform.position - asteroid.transform.position).magnitude;
@@ -33,17 +32,9 @@ public class ForcesManager : MonoBehaviour
         if (Distance - player.Radius < minDistance)
         {
           forcesAppliable.Add(asteroid.GetComponent<Asteroid>().AtractionForce);
-
-          i++;
         }
       }
     }
-
-    if (i > 0)
-    {
-      Debug.Log(i);
-    }
-
   }
 
 

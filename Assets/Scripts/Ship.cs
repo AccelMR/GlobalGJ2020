@@ -112,8 +112,7 @@ public class Ship : MonoBehaviour
   {
 
   }
-
-  private void OnCollisionEnter(Collision collision)
+  private void OnTriggerEnter(Collider other)
   {
     Debug.Log("choco wey");
   }
