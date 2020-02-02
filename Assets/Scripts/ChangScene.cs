@@ -26,6 +26,11 @@ public class ChangScene : MonoBehaviour
         {
             GameManager.GameMngr.changeState(GAME_STATE.gameOver);
         }
+        else if (NumScence == -1)
+        {
+            Debug.Log("Si te vas a salir");
+            Application.Quit();
+        }
 
     }
     // Start is called before the first frame update

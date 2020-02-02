@@ -22,7 +22,8 @@ public class GameManager : MonoBehaviour
   private float m_pauseTime = 0;
   [SerializeField]
   private float m_gameOverTime = 0;
-
+    [SerializeField]
+    public bool mPause = true;
   private GAME_STATE m_prevState = GAME_STATE.undefined;
 
   private GAME_STATE m_gameState = GAME_STATE.mainScreen;
@@ -89,6 +90,10 @@ public class GameManager : MonoBehaviour
   // Update is called once per frame
   void Update()
   {
+    if(Input.GetButtonDown("pause"))
+    {
+        m_gameState = GAME_STATE.pause;
+    }
     switch (m_gameState)
     {
       case GAME_STATE.gamePlay:
@@ -155,19 +160,29 @@ public class GameManager : MonoBehaviour
     }
        
     }
-
+   
   private void
     pauseState()
   {
     m_mainScrnTime = 0;
     m_pauseTime += Time.fixedDeltaTime;
 
-    if (Input.GetButtonDown("Submit"))
+    SceneManager.LoadScene("Pause");
+
+    if (Input.GetButtonDown("pause")&&mPause)
     {
-      m_prevState = m_gameState;
-      m_gameState = GAME_STATE.gamePlay;
-      //TODO call scene
+            
+           
+              
+                mPause = false;
+            
     }
+   if(!mPause)
+        {
+            changeState(GAME_STATE.gamePlay);
+        }
+
+
   }
 
   public void 
@@ -191,6 +206,7 @@ public class GameManager : MonoBehaviour
                 break;
             case GAME_STATE.pause:
                 {
+                    SceneManager.LoadScene("Pause");
                 }
                 break;
             case GAME_STATE.undefined:
