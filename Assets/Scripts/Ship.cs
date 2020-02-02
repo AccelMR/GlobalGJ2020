@@ -37,7 +37,7 @@ public class Ship : MonoBehaviour
   {
     get
     {
-      return 0.86f;
+      return 0.8f;
     }
   }
 
@@ -52,6 +52,11 @@ public class Ship : MonoBehaviour
   void Update()
   {
     rotateShip();
+  }
+
+  private void FixedUpdate()
+  {
+    
   }
 
   void
@@ -106,6 +111,11 @@ public class Ship : MonoBehaviour
   addForces(List<Vector3> _forces)
   {
 
+  }
+
+  private void OnCollisionEnter(Collision collision)
+  {
+    Debug.Log("choco wey");
   }
 
 }

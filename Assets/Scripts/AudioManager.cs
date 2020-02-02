@@ -18,7 +18,8 @@ namespace AudioStuff
     None, // TODO: NO SERIOUSLY, WHY IS THIS HERE? SHOULDN't IT BE None = 0?
           // Don't just delete the comment, leave a new one explaining why.
 
-    Music,
+    Music1,
+    MenuMusic,
    
     Ambient1,
    
@@ -64,18 +65,19 @@ public class AudioManager : MonoBehaviour
     s_ambientAudioSource = audioSources[2];
     s_EffectsAudioSource = audioSources[3];
 
-    linkToEnum(AudioStuff.Sounds.Sound1, "Sounds/");
+//    linkToEnum(AudioStuff.Sounds.Sound1, "Sounds/");
 
-    linkToEnum(AudioStuff.Sounds.Hit1, "Sounds/");
-    linkToEnum(AudioStuff.Sounds.Hit2, "Sounds/");
+//    linkToEnum(AudioStuff.Sounds.Hit1, "Sounds/");
+  //  linkToEnum(AudioStuff.Sounds.Hit2, "Sounds/");
 
     //linkToEnum(AudioStuff.Sounds.None, "Sounds/Flyboy/");
 
-    linkToEnum(AudioStuff.Sounds.Music, "Sounds/Music/Music1");
-  
-    linkToEnum(AudioStuff.Sounds.Ambient1, "Sounds/Ambient/");
+    linkToEnum(AudioStuff.Sounds.Music1, "Sounds/Music/Music1");
+    linkToEnum(AudioStuff.Sounds.MenuMusic, "Sounds/Music/MenuMusic");
+
+ //   linkToEnum(AudioStuff.Sounds.Ambient1, "Sounds/Ambient/");
    
-    linkToEnum(AudioStuff.Sounds.Explosion, "Sounds/Effects/");
+   // linkToEnum(AudioStuff.Sounds.Explosion, "Sounds/Effects/");
  
     instance = this;
   }
@@ -86,8 +88,15 @@ public class AudioManager : MonoBehaviour
   // Start is called before the first frame update
   void Start()
     {
-    AudioManager.changeMusic(AudioStuff.Sounds.Music);
+    if (GameManager.GameMngr.GameState == GAME_STATE.mainScreen)
+    {
+      AudioManager.changeMusic(AudioStuff.Sounds.MenuMusic);
     }
+    else if (GameManager.GameMngr.GameState == GAME_STATE.gamePlay)
+    {
+      AudioManager.changeMusic(AudioStuff.Sounds.Music1);
+    }
+  }
 
     // Update is called once per frame
     void Update()
