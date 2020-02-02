@@ -41,6 +41,11 @@ public class Asteroid : MonoBehaviour
   }
 
 
+  private Vector3 m_foroceApplied;
+  private bool wasForceApplied = false;
+  private float m_velocity;
+
+
   // Start is called before the first frame update
   void Start()
   {
@@ -51,6 +56,15 @@ public class Asteroid : MonoBehaviour
   {
     var playerDir = GameManager.GameMngr.Player.transform.position - transform.position;
     m_atractionForce = playerDir.normalized * (Mass * 1.0f);
+
+  }
+
+  private void FixedUpdate()
+  {
+    if (wasForceApplied)
+    {
+      transform.position = m_foroceApplied * Time.fixedDeltaTime * m_velocity;
+    }
   }
 
   private void
@@ -58,10 +72,17 @@ public class Asteroid : MonoBehaviour
   {
     transform.localScale = new Vector3(1, 1, 1) * Mass;
     m_orbit = Mass * 0.5f + (Mass * sizeOfOrbit);
-    var playerDir = GameManager.GameMngr.Player.transform.position - transform.position;
+    var playerDir = transform.position - GameManager.GameMngr.Player.transform.position;
     m_atractionForce = playerDir.normalized * (Mass * 1.0f);
    
   }
+
+  void
+  addForce(Vector3 foce)
+  {
+    m_foroceApplied += foce;
+  }
+
 
 #if UNITY_EDITOR
   private void OnDrawGizmos()
@@ -70,7 +91,7 @@ public class Asteroid : MonoBehaviour
     Gizmos.DrawWireSphere(transform.position, Orbit);
 
     Gizmos.color = Color.yellow;
-    var playerDir = GameManager.GameMngr.Player.transform.position - transform.position;
+    var playerDir = transform.position - GameManager.GameMngr.Player.transform.position;
     var from = transform.position +  (playerDir.normalized *  m_orbit);
     var to = from + m_atractionForce;
     Gizmos.DrawLine(from, to);
