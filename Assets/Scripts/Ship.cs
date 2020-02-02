@@ -123,10 +123,21 @@ public class Ship : MonoBehaviour
   void
   rotateShip()
   {
-    Vector3 newViewDirection =
-      new Vector3(Input.GetAxis("leftStickX"), -Input.GetAxis("leftStickY"), 0 );
-    m_viewDirection += newViewDirection * Time.fixedDeltaTime * m_rotationSpeed;
-    m_viewDirection.Normalize();
+    var xAxis = Input.GetAxis("leftStickX");
+    var yAxis = -Input.GetAxis("leftStickY");
+    if (xAxis > 0.5f || yAxis > 0.5f ||
+      xAxis < -0.5f || yAxis < -0.5f)
+    {
+      Vector3 newViewDirection = new Vector3(xAxis, yAxis, 0);
+      m_viewDirection += newViewDirection * Time.fixedDeltaTime * m_rotationSpeed;
+      m_viewDirection.Normalize();
+
+      var a = Mathf.Atan2(yAxis, xAxis) * Mathf.Rad2Deg;
+      var q = Quaternion.AngleAxis(a, new Vector3(0, 0, 1));
+      var r = Quaternion.Lerp(transform.rotation, q, m_rotationSpeed * Time.fixedDeltaTime);
+      transform.rotation = r;
+
+    }
     //transform.forward = m_viewDirection;
   }
 
