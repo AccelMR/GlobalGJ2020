@@ -1,11 +1,18 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using UnityEngine.SceneManagement;
+using UnityEngine.UIElements;
+using UnityEngine.UI;
 public class Ship : MonoBehaviour
 {
-  [SerializeField]
-  public int m_health;
+
+    public GameObject Explotion;
+    [SerializeField]
+    Text vida;
+
+    [SerializeField]
+  public int m_health=5;
 
   [SerializeField]
   float m_shootRange;
@@ -15,7 +22,8 @@ public class Ship : MonoBehaviour
 
   [SerializeField]
   int m_ammo;
-
+   [SerializeField]
+    float m_canBeDamaged=5;
   [SerializeField]
   float m_rotationSpeed;
 
@@ -54,17 +62,65 @@ public class Ship : MonoBehaviour
       return 0.8f;
     }
   }
-
-  private void Start()
+    public void Instantiete(Vector3 ObjectPos)
+    {
+        Instantiate(Explotion, new Vector3(gameObject.transform.position.x, gameObject.transform.position.y), Quaternion.identity);
+        Destroy(Explotion);
+        
+    }
+    private void Start()
   {
+        vida.text = ("vida: " + m_health);
     m_viewDirection = Vector3.zero;
     m_ray = new Ray(transform.position, m_viewDirection);
   }
 
-  // Update is called once per frame
-  void Update()
+    private void OnCollisionEnter(Collision collision)
+    {
+        if (collision.collider.tag == "Asteroid" && m_canBeDamaged <= 0)
+        {
+
+            Debug.Log("muere");
+            m_health--;
+            vida.text = ("vida: " + m_health);
+            m_canBeDamaged = 5;
+
+            System.Random rand = new System.Random();
+            int randomNumber = rand.Next(0, 1);
+            //   Debug.Log(randomNumber);
+            if (randomNumber == 0)
+            {
+                AudioManager.playSound(AudioStuff.Sounds.Hit1);
+            }
+            if (randomNumber == 1)
+            {
+                AudioManager.playSound(AudioStuff.Sounds.Hit2);
+            }
+        }
+        if (collision.collider.tag == "scrap")
+        {
+            m_health++;
+            vida.text = ("vida: " + m_health);
+            AudioManager.playSound(AudioStuff.Sounds.Repair1);
+            Destroy(collision.gameObject);
+        }
+    }
+
+    // Update is called once per frame
+    void Update()
   {
-    rotateShip();
+        m_canBeDamaged -= Time.fixedDeltaTime;
+        if (m_health == 0)
+        {
+            Instantiete(transform.position);
+            AudioManager.playSound(AudioStuff.Sounds.Explosion);
+            Destroy(gameObject);
+            SceneManager.LoadScene("UI_GameOver");
+        }
+        Debug.Log(m_canBeDamaged);
+
+
+        rotateShip();
     if(Input.GetButtonDown("attractionButton"))
     {
       m_ray.direction = m_viewDirection;
@@ -229,7 +285,10 @@ public class Ship : MonoBehaviour
   void
   move()
   {
-    transform.position += m_finalForce * m_velocity * Time.fixedDeltaTime;
+    Vector3 newPos = new Vector3(transform.position.x, transform.position.y, transform.position.z);
+    newPos += m_finalForce * m_velocity * Time.fixedDeltaTime;
+    
+        //transform.position = newPos;
   }
 
 }

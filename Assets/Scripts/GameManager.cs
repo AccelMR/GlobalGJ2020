@@ -21,7 +21,7 @@ public class GameManager : MonoBehaviour
   [SerializeField]
   private float m_gameOverTime = 0;
     [SerializeField]
-    public bool mPause = true;
+    public bool mPause = false;
   private GAME_STATE m_prevState = GAME_STATE.undefined;
 
   private GAME_STATE m_gameState = GAME_STATE.mainScreen;
@@ -88,8 +88,17 @@ public class GameManager : MonoBehaviour
   // Update is called once per frame
   void Update()
   {
-    if(Input.GetButtonDown("pause"))
+    if (Input.GetButtonDown("pause") && !mPause)
+        {
+            Time.timeScale = 1;
+            mPause = false;
+            changeState(GAME_STATE.gamePlay);
+
+        }
+        if (Input.GetButtonDown("pause"))
     {
+            Time.timeScale = 0.00001f;
+            mPause = true;
         m_gameState = GAME_STATE.pause;
     }
     switch (m_gameState)
@@ -161,31 +170,19 @@ public class GameManager : MonoBehaviour
    
   private void
     pauseState()
-  {
-    m_mainScrnTime = 0;
-    m_pauseTime += Time.fixedDeltaTime;
-
-    SceneManager.LoadScene("Pause");
-
-    if (Input.GetButtonDown("pause")&&mPause)
     {
-                mPause = false;
-            changeState(GAME_STATE.gamePlay);
-         //   m_gameTime += (Time.timeScale = 0.0001f);
-         
-            
+        Time.timeScale = 0.00001f;
+        m_mainScrnTime = 0;
+        m_pauseTime += Time.fixedDeltaTime;
+
+        SceneManager.LoadScene("Pause");
+
+        
+
+
     }
-   if(!mPause)
-        {
-           
-         //   m_gameTime += (Time.timeScale = 1f);
-            mPause = true;
-        }
 
-
-  }
-
-  public void 
+    public void 
     changeState(GAME_STATE state)
   {
     m_prevState = m_gameState;
@@ -202,7 +199,7 @@ public class GameManager : MonoBehaviour
                         spawner.tag = "Spawner";
                         AsteroidGenerator.generarAsteroides();
                     }
-                    else if (m_prevState == GAME_STATE.pause)
+                     if (m_prevState == GAME_STATE.pause)
                     {
 
 

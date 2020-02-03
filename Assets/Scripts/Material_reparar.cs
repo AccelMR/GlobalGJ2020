@@ -14,7 +14,7 @@ public class Material_reparar : MonoBehaviour
     {
         Instantiate(Explotion,new Vector3(gameObject.transform.position.x,gameObject.transform.position.y),Quaternion.identity);
         Destroy(Explotion);
-        vida = 30000;
+        vida = 30;
     }
     void Start()
     {
